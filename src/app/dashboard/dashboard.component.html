@@ -1,0 +1,10 @@
+<nav>
+    <ul>
+        <li><a (click)="show()">ORDERS</a></li>
+        <li ><a (click)="show3()">CONTACT</a></li>
+        <li><a routerLink="" (click)="logout()">LOGOUT</a></li>
+    </ul>
+</nav>
+<app-orders *ngIf="orders_show" [type_user]="type_user"></app-orders>
+<app-contact *ngIf="contact_show" [type_user]="type_user"></app-contact>
+<router-outlet></router-outlet>

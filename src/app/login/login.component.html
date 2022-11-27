@@ -1,0 +1,27 @@
+<div class="Main">
+    <form [formGroup]="login" (ngSubmit)="logindata()" class="form_box">
+        <h3>Login</h3>
+        <div class="form-group">
+            <label>User Name</label>
+            <input type="text" formControlName="email" class="form-control mb-3 mt-3" placeholder="Enter Email"
+                autocomplete="given-email">
+            <span class="text-danger"
+                *ngIf="login.controls['email'].dirty && login.hasError('required','email') || login.controls['email'].invalid">Email
+                is required or is not valid</span>
+
+        </div>
+        <div class="form-group">
+            <label>Password</label>
+            <input type="password" formControlName="password" class="form-control mb-3 mt-3"
+                placeholder="Enter Password" autocomplete="given-password">
+            <span class="text-danger"
+                *ngIf="login.controls['password'].dirty && login.hasError('required','password')">Password
+                is
+                required</span>
+        </div>
+
+        <span>Create New Accout <a routerLink="/singup">SingUp</a></span>
+        <br />
+        <button type="submit" [disabled]="!login.valid" class="btn btn-success">Login</button>
+    </form>
+</div>

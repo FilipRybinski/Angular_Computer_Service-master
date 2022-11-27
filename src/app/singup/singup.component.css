@@ -1,0 +1,12 @@
+.form_box1 {
+    transform: translate(0, 180px);
+    width: 400px;
+    height: auto;
+    padding: 25px;
+    margin: auto;
+    color: black;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 5px 5px 15px black;
+    z-index: 1;
+}

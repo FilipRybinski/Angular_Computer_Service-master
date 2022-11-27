@@ -1,0 +1,11 @@
+.Main {
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    background-image: url(Images/bg-pattern-top-desktop.svg),
+        url(Images/bg-pattern-bottom-desktop.svg);
+    background-repeat: no-repeat, no-repeat;
+    background-position: top left, bottom right;
+    place-content: center;
+    background-color: #181d50;
+}

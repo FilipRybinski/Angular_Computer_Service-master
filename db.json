@@ -1,0 +1,71 @@
+{
+  "singup": [
+    {
+      "fname": "Filip",
+      "lname": "Rybiński",
+      "email": "rybciaw77@gmail.com",
+      "phone": "795467266",
+      "password": "12345",
+      "type": "admin",
+      "id": 1
+    },
+    {
+      "fname": "TEST1",
+      "lname": "TEST1",
+      "email": "rybciaw66@gmail.com",
+      "phone": "312312312",
+      "password": "12345",
+      "type": "client",
+      "id": 2
+    },
+    {
+      "firstName": "siema",
+      "lastName": "siema",
+      "phone": "3123123",
+      "email": "siema@wp.pl",
+      "password": "12345",
+      "type": false,
+      "id": 3
+    }
+  ],
+  "orders": [
+    {
+      "id": 3,
+      "accept_date": "2022-11-23T02:50:24.089Z",
+      "description": "asd",
+      "completed": true,
+      "email": "rybciaw66@gmail.com",
+      "wycena": 150,
+      "date_collect": "2022-11-18"
+    }
+  ],
+  "registration_order": [
+    {
+      "id": 1,
+      "firstName": "Filip",
+      "lastName": "R",
+      "email": "rybciaw66@gmail.com",
+      "model_type": "Asus VIVO BOOK",
+      "des_of_problem": "grzeje sie ",
+      "des_of_demage": "pasta"
+    },
+    {
+      "id": 2,
+      "firstName": "Filip",
+      "lastName": "Rybiński",
+      "email": "rybciaw66@gmail.com",
+      "model_type": "THINKPAD",
+      "des_of_problem": "MATRYCA NIE DZIALA",
+      "des_of_demage": "UPADŁ"
+    }
+  ],
+  "message": [
+    {
+      "id": 1,
+      "firstName": "Filip",
+      "lastName": "Rybiński",
+      "email": "rybciaw66@gmail.com",
+      "message": "Witam chciałbym zapytać się kiedy będzie do odbioru zamowienie"
+    }
+  ]
+}

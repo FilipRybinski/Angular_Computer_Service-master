@@ -1,0 +1,267 @@
+<div class="cont">
+    <div *ngIf="type_user">
+        <h3>Lista zleceń: </h3>
+        <table class="table table-striped text-center mt-3">
+            <thead>
+                <tr>
+                    <th>Id Zlecenia:</th>
+                    <th>Data Akceptacji:</th>
+                    <th>Email:</th>
+                    <th>Opis Zlecenia:</th>
+                    <th>Wycena:</th>
+                    <th>Data odbioru:</th>
+                    <th>Status:</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let order of OrdersData">
+                    <td>{{ order.get_id }}.</td>
+                    <td> {{ order.get_accept_date | date:'shortDate'}} </td>
+                    <td>{{order.get_email}}</td>
+                    <td>{{ order.get_description }}</td>
+                    <td appDolar>{{order.get_wycena |wycena}}</td>
+                    <td>{{order.get_date_collect | date:'shortDate'}}</td>
+                    <td *ngIf="order.get_completed">Status: Zakończony</td>
+                    <td *ngIf="!order.get_completed">Status: W toku</td>
+                    <td><button type="button" class="btn btn-info" data-toggle="modal"
+                            data-target="#exampleModalCenter2" (click)="openModal2(order.get_id)">Edit</button></td>
+                    <td><button class="btn btn-danger" (click)="deleteRegistration(order)">Delete</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="!type_user">
+        <h3>Lista zleceń: </h3>
+        <table class="table table-striped text-center mt-3">
+            <thead>
+                <tr>
+                    <th>Id Zlecenia:</th>
+                    <th>Data Akceptacji:</th>
+                    <th>Email:</th>
+                    <th>Opis Zlecenia:</th>
+                    <th>Wycena:</th>
+                    <th>Data odbioru:</th>
+                    <th>Status:</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let order of OrdersData |user">
+                    <td>{{ order.get_id }}.</td>
+                    <td> {{ order.get_accept_date | date:'shortDate'}} </td>
+                    <td>{{order.get_email}}</td>
+                    <td>{{ order.get_description }}</td>
+                    <td appDolar>{{order.get_wycena |wycena}}</td>
+                    <td>{{order.get_date_collect | date:'shortDate'}}</td>
+                    <td *ngIf="order.get_completed">Status: Zakończony</td>
+                    <td *ngIf="!order.get_completed">Status: W toku</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- MODALLLLLLL BOOTSTRAP                        -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Registration</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeModal()">
+                        <span aria-hidden=" true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form [formGroup]="RegistrationformValue">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">First Name</label>
+                            <input type="text" class="form-control" placeholder="Enter First Name"
+                                formControlName="fname">
+                            <span class="text-danger"
+                                *ngIf="RegistrationformValue.controls['fname'].dirty && RegistrationformValue.hasError('required','fname')">Email
+                                is required</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Last Name</label>
+                            <input type="text" class="form-control" placeholder="Enter Last Name"
+                                formControlName="lname">
+                            <span class="text-danger"
+                                *ngIf="RegistrationformValue.controls['lname'].dirty && RegistrationformValue.hasError('required','lname')">Last
+                                Name
+                                is required</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Adress Email</label>
+                            <input type="email" class="form-control" placeholder="Enter email" formControlName="email"
+                                readonly="readonly">
+                            <span class="text-danger"
+                                *ngIf="RegistrationformValue.controls['email'].dirty && RegistrationformValue.hasError('required','email')">Email
+                                is required</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Model Type</label>
+                            <input type="email" class="form-control" placeholder="Enter Model"
+                                formControlName="model_type">
+                            <span class="text-danger"
+                                *ngIf="RegistrationformValue.controls['model_type'].dirty && RegistrationformValue.hasError('required','model_type')">Model
+                                Type
+                                is required</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Description of the problem</label>
+                            <input type="text" class="form-control" placeholder="Enter Description"
+                                formControlName="des_of_problem">
+                            <span class="text-danger"
+                                *ngIf="RegistrationformValue.controls['des_of_problem'].dirty && RegistrationformValue.hasError('required','des_of_problem')">Descriptionl
+                                is required</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">What probably made this demage</label>
+                            <input type="text" class="form-control" placeholder="Enter Description"
+                                formControlName="des_of_demage">
+                            <span class="text-danger"
+                                *ngIf="RegistrationformValue.controls['des_of_demage'].dirty && RegistrationformValue.hasError('required','des_of_demage')">Description
+                                is required</span>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal"
+                        (click)="closeModal()">Close</button>
+                    <button type="button" class="btn btn-success" [disabled]="!RegistrationformValue.valid"
+                        (click)="postRegistration()">Send
+                        it!</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- MODAL2 -->
+    <div class="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Registration</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeModal2()">
+                        <span aria-hidden=" true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form [formGroup]="Update">
+                        <div class="form-group">
+                            <label>Choose:</label>
+                            <select formControlName="status">
+                                <option>Zakończony</option>
+                                <option>W toku</option>
+                            </select>
+                            <span class="text-danger"
+                                *ngIf="Update.controls['status'].dirty && Update.hasError('required','status')">Status
+                                is required</span>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal"
+                        (click)="closeModal2()">Close</button>
+                    <button type="button" class="btn btn-success" [disabled]="!Update.valid"
+                        (click)="UpdateStatus()">Update</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ESSSA -->
+    <div *ngIf="!type_user">
+        <h3>Lista zgloszeń: </h3>
+        <table class="table table-striped text-center mt-3">
+            <thead>
+                <tr>
+                    <th>Id Zlecenia:</th>
+                    <th>Imie i Nazwisko</th>
+                    <th>Adres Email</th>
+                    <th>Model</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let registration of registrationData | user">
+                    <td>{{registration.id}}</td>
+                    <td>{{registration.firstName}} {{registration.lastName}}</td>
+                    <td>{{registration.email}}</td>
+                    <td>{{registration.model_type | uppercase}}</td>
+                    <td>Czeka na akceptacje</td>
+                </tr>
+            </tbody>
+        </table>
+        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModalCenter"
+            (click)="openModal()">Add registration</button>
+    </div>
+    <div *ngIf="type_user">
+        <h3>Lista zgloszeń do przyjecia lub odrzucenia: </h3>
+        <table class="table table-striped text-center mt-3">
+            <thead>
+                <tr>
+                    <th>Id Zlecenia:</th>
+                    <th>First Name:</th>
+                    <th>Last Name:</th>
+                    <th>Email:</th>
+                    <th>Model:</th>
+                    <th>Description:</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let registration of registrationData">
+                    <td>{{ registration.get_id }}.</td>
+                    <td> {{ registration.get_firstName }} </td>
+                    <td> {{ registration.get_lastName }} </td>
+                    <td>{{registration.get_email}}</td>
+                    <td>{{ registration.get_model_type }}</td>
+                    <td>{{ registration.get_des_of_problem }}</td>
+                    <td><button type="button" class="btn btn-success" (click)="openModal3(registration)">Accept</button>
+                    </td>
+                    <td><button class="btn btn-danger"
+                            (click)="deleteRegistration_form_Client(registration)">Reject</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="modal fade" id="exampleModalCenter3" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Registration</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeModal3()">
+                        <span aria-hidden=" true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form [formGroup]="Update2">
+                        <div class="form-group">
+                            <label>Set pricing:</label>
+                            <input type="number" class="form-control" placeholder="Enter Id" formControlName="status2">
+                            <span class="text-danger"
+                                *ngIf="Update2.controls['status2'].dirty && Update2.hasError('required','status2')">Pricing
+                                is required</span>
+                        </div>
+                        <div class="form-group">
+                            <label>Choose date of recepit</label>
+                            <input type="date" class="form-control" id="start" formControlName="status3"
+                                value='{{date}}' min='{{date}}'>
+                            <span class="text-danger"
+                                *ngIf="Update2.controls['status3'].dirty && Update2.hasError('required','status3')">Date
+                                is required</span>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal"
+                        (click)="closeModal3()">Close</button>
+                    <button type="button" class="btn btn-success" [disabled]="!Update2.valid"
+                        (click)="move_form_registration_to_order()">Accept</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

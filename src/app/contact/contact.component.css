@@ -1,0 +1,18 @@
+.cont {
+    margin: auto;
+    margin-top: 200px;
+    padding: 25px;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 5px 5px 15px black;
+    width: 500px;
+}
+
+.cont2 {
+    margin: auto;
+    margin-top: 200px;
+    padding: 25px;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 5px 5px 15px black;
+}

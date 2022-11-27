@@ -1,0 +1,47 @@
+<div class="container">
+    <form [formGroup]="singup" (ngSubmit)="singupdata()" class="form_box1">
+        <h3>SingUp</h3>
+        <div class="form-group">
+            <label>First Name</label>
+            <input type="text" formControlName="fname" class="form-control mb-3 mt-3" placeholder="Enter First Name">
+            <span class="text-danger"
+                *ngIf="singup.controls['fname'].dirty && singup.hasError('required','fname')">First Name
+                is required</span>
+        </div>
+        <div class="form-group">
+            <label>Last Name</label>
+            <input type="text" formControlName="lname" class="form-control mb-3 mt-3" placeholder="Enter Last Name">
+            <span class="text-danger" *ngIf="singup.controls['lname'].dirty && singup.hasError('required','lname')">Last
+                Name
+                is required</span>
+        </div>
+        <div class="form-group">
+            <label>Email</label>
+            <input type="email" formControlName="email" class="form-control mb-3 mt-3" placeholder="Enter Email">
+            <span class="text-danger"
+                *ngIf="singup.controls['email'].dirty && singup.hasError('required','email') || singup.controls['email'].invalid">Email
+                is required or is not valid</span>
+        </div>
+        <div class="form-group">
+            <label>Phone Number</label>
+            <input type="tel" formControlName="phone" class="form-control mb-3 mt-3" placeholder="Enter Phone Number">
+            <span class="text-danger"
+                *ngIf="singup.controls['phone'].dirty && singup.hasError('required','phone') || singup.controls['phone'].invalid">Phone
+                Number
+                is required or is not valid</span>
+        </div>
+        <div class="form-group">
+            <label>Password</label>
+            <input type="password" formControlName="password" class="form-control mb-3 mt-3"
+                placeholder="Enter Password">
+            <span class="text-danger"
+                *ngIf="singup.controls['password'].dirty && singup.hasError('required','password') || singup.controls['password'].invalid">password
+                is required or is too short </span>
+        </div>
+
+        <span>You Have Already Account <a routerLink="/login">SingIn</a></span>
+        <br />
+        <button type="submit" [disabled]="!singup.valid" class="btn btn-success">SingUp</button>
+    </form>
+</div>
+<router-outlet></router-outlet>

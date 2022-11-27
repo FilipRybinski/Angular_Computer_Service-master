@@ -1,0 +1,18 @@
+h3 {
+    margin: 20px;
+    ;
+    text-align: center;
+}
+
+.cont {
+    margin: 0 20px;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 5px 5px 15px black;
+}
+
+.test {}
+
+.test::before {
+    content: 'Prawdopodobna kwota przy odbiorze: ';
+}
